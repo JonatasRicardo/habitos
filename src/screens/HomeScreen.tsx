@@ -1,9 +1,5 @@
-import type { MouseEvent } from 'react'
-import { BookOpen, ExternalLink, FileText, GitBranch, MonitorSmartphone, PenTool } from 'lucide-react'
-
-type HomeScreenProps = {
-  onOpenPrototype: () => void
-}
+import { useEffect, useState } from 'react'
+import { BookOpen, ExternalLink, FileText, GitBranch, Globe2, MonitorSmartphone, PenTool } from 'lucide-react'
 
 const figmaDesignUrl =
   'https://www.figma.com/design/NdUd55SST624cVUhRn97zj/Habitos?node-id=19-18&t=AXt4ULPUAtod5fJX-1'
@@ -13,6 +9,21 @@ const figmaPrototypeUrl =
 
 const storybookUrl = 'https://habitos-doc.vercel.app/'
 const githubUrl = 'https://github.com/JonatasRicardo/habitos'
+const linkedinUrl = 'https://www.linkedin.com/in/jonatasricardo/'
+const siteUrl = 'https://jonatasricardo.com/'
+
+const authorLinks = [
+  {
+    title: 'LinkedIn',
+    href: linkedinUrl,
+    icon: <span className="text-[12px] font-black leading-none">in</span>,
+  },
+  {
+    title: 'Site',
+    href: siteUrl,
+    icon: <Globe2 className="h-4 w-4" strokeWidth={2.4} />,
+  },
+]
 
 const projectLinks = [
   {
@@ -47,16 +58,75 @@ const projectLinks = [
   },
 ]
 
-function handleLocalNavigation(event: MouseEvent<HTMLAnchorElement>, onNavigate: () => void) {
-  event.preventDefault()
-  onNavigate()
-}
+export function HomeScreen() {
+  const [isHeaderCompact, setIsHeaderCompact] = useState(false)
 
-export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
+  useEffect(() => {
+    const updateHeader = () => setIsHeaderCompact(window.scrollY > 84)
+
+    updateHeader()
+    window.addEventListener('scroll', updateHeader, { passive: true })
+    return () => window.removeEventListener('scroll', updateHeader)
+  }, [])
+
   return (
     <main className="min-h-svh bg-white text-ink">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-10 sm:px-8 md:py-14">
-        <section className="relative h-[520px] sm:h-[640px] md:h-auto md:min-h-[690px]">
+      <header className="fixed inset-x-0 top-3 z-50 px-4 sm:top-5">
+        <div
+          className={`mx-auto flex max-w-[1120px] items-center justify-between rounded-full border border-black/10 bg-white/86 shadow-[0_14px_34px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-300 ${
+            isHeaderCompact ? 'min-h-12 px-3 py-2 sm:min-h-14 sm:px-4' : 'min-h-16 px-4 py-3 sm:min-h-[72px] sm:px-5'
+          }`}
+        >
+          <a
+            href="#"
+            target="_blank"
+            rel="noreferrer"
+            className="flex min-w-0 items-center gap-3"
+            aria-label="Voltar ao topo da apresentação"
+          >
+            <img
+              src="/presentation/avatar.png"
+              alt="Foto de Jonatas Ricardo Santos"
+              className={`flex shrink-0 items-center justify-center rounded-full bg-ink font-black text-white transition-all duration-300 ${
+                isHeaderCompact ? 'h-8 w-8 text-sm' : 'h-10 w-10 text-base sm:h-11 sm:w-11'
+              }`}
+            />
+
+
+            <span className="min-w-0">
+              <span
+                className={`block truncate font-black leading-none transition-all duration-300 ${
+                  isHeaderCompact ? 'text-base' : 'text-lg sm:text-xl'
+                }`}
+              >
+                Jonatas Ricardo Santos
+              </span>
+              <span
+                className={`block truncate text-xs font-bold text-[#050505]/58 transition-all duration-300 ${
+                  isHeaderCompact ? 'max-h-0 opacity-0' : 'mt-1 max-h-4 opacity-100'
+                }`}
+              >
+                Frontend Engineer
+              </span>
+            </span>
+          </a>
+
+          <nav className="flex shrink-0 items-center gap-1.5" aria-label="Links rápidos da apresentação">
+            <a
+              href="#links-projeto"
+              rel="noreferrer"
+              className={`rounded-full border border-black/10 font-black transition hover:border-orange/70 hover:text-orange ${
+                isHeaderCompact ? 'px-3 py-2 text-xs' : 'px-4 py-2.5 text-sm'
+              }`}
+            >
+              Links
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <div className="mx-auto w-full max-w-[1120px] px-5 pb-10 pt-[104px] sm:px-8 sm:pt-[124px] md:pb-14">
+        <section className="relative h-[492px] sm:h-[620px] md:h-auto md:min-h-[690px]">
           <img
             src="/presentation/hero-desk.png"
             alt="Protótipo de hábitos aberto em um iPhone sobre uma mesa de trabalho"
@@ -67,17 +137,30 @@ export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
             Decisões de Design
           </h1>
 
-          <div className="absolute left-0 top-[178px] z-10 w-[180px] sm:top-[260px] sm:w-[230px] md:relative md:top-auto md:mt-16">
+          <div className="absolute left-0 top-[168px] z-10 w-[260px] sm:top-[252px] sm:w-[360px] md:relative md:top-auto md:mt-16 md:w-[310px]">
             <img
               src="/presentation/avatar.png"
               alt="Foto de Jonatas Ricardo Santos"
               className="h-[170px] w-[170px] rounded-full bg-orange object-cover sm:h-[220px] sm:w-[220px] md:h-[230px] md:w-[230px]"
             />
             <p className="mt-6 text-[30px] font-black leading-[0.98] sm:text-[38px] md:mt-8 md:text-[42px]">
-              Jonatas Ricardo
-              <br />
-              Santos
+              Jonatas Ricardo Santos
             </p>
+            <div className="mt-4 flex flex-row flex-wrap items-center gap-2 sm:mt-5">
+              {authorLinks.map((link) => (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/82 py-1.5 pl-1.5 pr-2.5 text-sm font-black shadow-[0_8px_20px_rgba(0,0,0,0.08)] backdrop-blur-md transition hover:border-orange/70 hover:text-orange"
+                >
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-orange text-ink">{link.icon}</span>
+                  {link.title}
+                  <ExternalLink className="h-3.5 w-3.5 text-[#050505]/45" strokeWidth={2.4} />
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -157,13 +240,13 @@ export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
               <div>
                 <h3 className="text-[32px] font-black leading-none">Hierarquia</h3>
                 <nav className="mt-9 space-y-8 text-[22px] font-black leading-none text-orange" aria-label="Períodos">
-                  <a href="#periodo-dia" className="block w-fit transition hover:text-sunshine">
+                  <a href="#periodo-dia" target="_blank" rel="noreferrer" className="block w-fit transition hover:text-sunshine">
                     &lt;&nbsp;&nbsp; dia &nbsp;&nbsp;&gt;
                   </a>
-                  <a href="#periodo-semana" className="block w-fit transition hover:text-sunshine">
+                  <a href="#periodo-semana" target="_blank" rel="noreferrer" className="block w-fit transition hover:text-sunshine">
                     &lt; semana &gt;
                   </a>
-                  <a href="#periodo-mes" className="block w-fit transition hover:text-sunshine">
+                  <a href="#periodo-mes" target="_blank" rel="noreferrer" className="block w-fit transition hover:text-sunshine">
                     &lt;&nbsp;&nbsp; mês &nbsp;&nbsp;&gt;
                   </a>
                 </nav>
@@ -281,7 +364,7 @@ export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
           </div>
         </section>
 
-        <section className="border-t border-black/10 py-14">
+        <section id="links-projeto" className="border-t border-black/10 py-14">
           <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.18em] text-orange">Entrega</p>
@@ -294,15 +377,12 @@ export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
 
             <div className="grid gap-3 sm:grid-cols-2">
               {projectLinks.map((link) => {
-                const isReactPrototype = link.href === '#/prototipo-react'
-
                 return (
                   <a
                     key={link.title}
                     href={link.href}
-                    target={isReactPrototype ? undefined : '_blank'}
-                    rel={isReactPrototype ? undefined : 'noreferrer'}
-                    onClick={isReactPrototype ? (event) => handleLocalNavigation(event, onOpenPrototype) : undefined}
+                    target="_blank"
+                    rel="noreferrer"
                     className="group rounded-[14px] border border-black/10 bg-[#f7f7f7] p-5 text-ink transition hover:border-orange/70 hover:bg-white"
                   >
                     <span className="flex items-center justify-between gap-4">

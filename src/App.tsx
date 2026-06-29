@@ -45,7 +45,7 @@ function App() {
   }
 
   if (screen === 'home') {
-    return <HomeScreen onOpenPrototype={openPrototype} />
+    return <HomeScreen />
   }
 
   return (

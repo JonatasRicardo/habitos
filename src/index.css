@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink: #050505;
+  --color-muted: #51320c;
+  --color-sunshine: #ffd400;
+  --color-amber: #ffbd48;
+  --color-orange: #ffa04a;
+  --color-panel: rgba(255, 210, 135, 0.62);
+  --color-panel-soft: #ffd890;
+  --color-success: #23af47;
+  --color-danger: #ff2c3a;
+  --color-cyan: #00bfc0;
+  --color-blue: #129cff;
+  --color-violet: #7b52ff;
+  --app-bg-gradient: linear-gradient(180deg, #ffca12 0%, #ffae42 13%, #ff9c45 48%, #ffa24a 100%);
+  --radius-app: 28px;
+  --radius-panel: 20px;
+  --radius-tile: 18px;
+  --shadow-habit: 0 8px 14px rgba(0, 0, 0, 0.14);
+  --shadow-lift: 0 7px 10px rgba(0, 0, 0, 0.2);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: var(--color-ink);
+  background: #f4f4f4;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+.habitos-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.28) transparent;
+}
+
+.app-gradient {
+  background: var(--app-bg-gradient);
+}
+
+.glass-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.27) 0%, rgba(255, 255, 255, 0.12) 48%, rgba(255, 255, 255, 0.08) 100%),
+    linear-gradient(135deg, rgba(255, 236, 184, 0.32) 0%, rgba(255, 164, 79, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.glass-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.18) 54%, rgba(255, 255, 255, 0.12) 100%),
+    rgba(255, 216, 144, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}

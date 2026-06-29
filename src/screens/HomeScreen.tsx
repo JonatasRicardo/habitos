@@ -1,9 +1,8 @@
 import type { MouseEvent } from 'react'
-import { ArrowRight, BookOpen, ExternalLink, FileText, GitBranch, MonitorSmartphone, PenTool } from 'lucide-react'
+import { BookOpen, ExternalLink, FileText, GitBranch, MonitorSmartphone, PenTool } from 'lucide-react'
 
 type HomeScreenProps = {
   onOpenPrototype: () => void
-  onOpenManage: () => void
 }
 
 const figmaDesignUrl =
@@ -12,7 +11,7 @@ const figmaDesignUrl =
 const figmaPrototypeUrl =
   'https://www.figma.com/proto/NdUd55SST624cVUhRn97zj/Habitos?node-id=19-18&viewport=332%2C-1483%2C0.92&t=l3iLOUYGso6bd7Pe-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=19%3A18&page-id=0%3A1'
 
-const storybookUrl = 'https://storybook-habitos.vercel.app'
+const storybookUrl = 'https://habitos-doc.vercel.app/'
 const githubUrl = 'https://github.com/JonatasRicardo/habitos'
 
 const projectLinks = [
@@ -53,7 +52,7 @@ function handleLocalNavigation(event: MouseEvent<HTMLAnchorElement>, onNavigate:
   onNavigate()
 }
 
-export function HomeScreen({ onOpenPrototype, onOpenManage }: HomeScreenProps) {
+export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
   return (
     <main className="min-h-svh bg-white text-ink">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-10 sm:px-8 md:py-14">
@@ -318,25 +317,6 @@ export function HomeScreen({ onOpenPrototype, onOpenManage }: HomeScreenProps) {
                 )
               })}
             </div>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={onOpenPrototype}
-              className="inline-flex items-center gap-2 rounded-full bg-sunshine px-5 py-3 text-sm font-black text-ink transition active:scale-[0.98]"
-            >
-              Abrir protótipo React
-              <ArrowRight className="h-4 w-4" strokeWidth={2.4} />
-            </button>
-            <button
-              type="button"
-              onClick={onOpenManage}
-              className="inline-flex items-center gap-2 rounded-full border border-black/20 px-5 py-3 text-sm font-black text-ink transition hover:border-orange/70 active:scale-[0.98]"
-            >
-              Abrir gestão de hábitos
-              <ArrowRight className="h-4 w-4" strokeWidth={2.4} />
-            </button>
           </div>
         </section>
       </div>

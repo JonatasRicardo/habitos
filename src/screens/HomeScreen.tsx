@@ -84,27 +84,29 @@ export function HomeScreen() {
             className="flex min-w-0 items-center gap-3"
             aria-label="Voltar ao topo da apresentação"
           >
-            <span
+            <img
+              src="/presentation/avatar.png"
+              alt="Foto de Jonatas Ricardo Santos"
               className={`flex shrink-0 items-center justify-center rounded-full bg-ink font-black text-white transition-all duration-300 ${
                 isHeaderCompact ? 'h-8 w-8 text-sm' : 'h-10 w-10 text-base sm:h-11 sm:w-11'
               }`}
-            >
-              H
-            </span>
+            />
+
+
             <span className="min-w-0">
               <span
                 className={`block truncate font-black leading-none transition-all duration-300 ${
                   isHeaderCompact ? 'text-base' : 'text-lg sm:text-xl'
                 }`}
               >
-                Habitos
+                Jonatas Ricardo Santos
               </span>
               <span
                 className={`block truncate text-xs font-bold text-[#050505]/58 transition-all duration-300 ${
                   isHeaderCompact ? 'max-h-0 opacity-0' : 'mt-1 max-h-4 opacity-100'
                 }`}
               >
-                Decisões de Design
+                Frontend Engineer
               </span>
             </span>
           </a>
@@ -112,25 +114,12 @@ export function HomeScreen() {
           <nav className="flex shrink-0 items-center gap-1.5" aria-label="Links rápidos da apresentação">
             <a
               href="#links-projeto"
-              target="_blank"
               rel="noreferrer"
               className={`rounded-full border border-black/10 font-black transition hover:border-orange/70 hover:text-orange ${
                 isHeaderCompact ? 'px-3 py-2 text-xs' : 'px-4 py-2.5 text-sm'
               }`}
             >
               Links
-            </a>
-            <a
-              href={siteUrl}
-              target="_blank"
-              rel="noreferrer"
-              className={`flex items-center justify-center rounded-full bg-sunshine text-ink transition active:scale-95 ${
-                isHeaderCompact ? 'h-9 w-9' : 'h-10 w-10'
-              }`}
-              aria-label="Abrir site de Jonatas Ricardo"
-              title="Site"
-            >
-              <Globe2 className="h-4 w-4" strokeWidth={2.4} />
             </a>
           </nav>
         </div>
@@ -148,16 +137,14 @@ export function HomeScreen() {
             Decisões de Design
           </h1>
 
-          <div className="absolute left-0 top-[168px] z-10 w-[260px] sm:top-[252px] sm:w-[360px] md:relative md:top-auto md:mt-16 md:w-[230px]">
+          <div className="absolute left-0 top-[168px] z-10 w-[260px] sm:top-[252px] sm:w-[360px] md:relative md:top-auto md:mt-16 md:w-[310px]">
             <img
               src="/presentation/avatar.png"
               alt="Foto de Jonatas Ricardo Santos"
               className="h-[170px] w-[170px] rounded-full bg-orange object-cover sm:h-[220px] sm:w-[220px] md:h-[230px] md:w-[230px]"
             />
             <p className="mt-6 text-[30px] font-black leading-[0.98] sm:text-[38px] md:mt-8 md:text-[42px]">
-              Jonatas Ricardo
-              <br />
-              Santos
+              Jonatas Ricardo Santos
             </p>
             <div className="mt-4 flex flex-row flex-wrap items-center gap-2 sm:mt-5">
               {authorLinks.map((link) => (

@@ -37,5 +37,5 @@ export const ManageHabits: Story = {
 }
 
 export const PresentationHome: Story = {
-  render: () => <HomeScreen onOpenPrototype={() => undefined} />,
+  render: () => <HomeScreen />,
 }

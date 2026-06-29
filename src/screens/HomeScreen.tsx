@@ -1,5 +1,6 @@
 import type { MouseEvent } from 'react'
-import { BookOpen, ExternalLink, FileText, GitBranch, MonitorSmartphone, PenTool } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { BookOpen, ExternalLink, FileText, GitBranch, Globe2, MonitorSmartphone, PenTool } from 'lucide-react'
 
 type HomeScreenProps = {
   onOpenPrototype: () => void
@@ -13,6 +14,21 @@ const figmaPrototypeUrl =
 
 const storybookUrl = 'https://habitos-doc.vercel.app/'
 const githubUrl = 'https://github.com/JonatasRicardo/habitos'
+const linkedinUrl = 'https://www.linkedin.com/in/jonatasricardo/'
+const siteUrl = 'https://jonatasricardo.com/'
+
+const authorLinks = [
+  {
+    title: 'LinkedIn',
+    href: linkedinUrl,
+    icon: <span className="text-[12px] font-black leading-none">in</span>,
+  },
+  {
+    title: 'Site',
+    href: siteUrl,
+    icon: <Globe2 className="h-4 w-4" strokeWidth={2.4} />,
+  },
+]
 
 const projectLinks = [
   {
@@ -53,10 +69,77 @@ function handleLocalNavigation(event: MouseEvent<HTMLAnchorElement>, onNavigate:
 }
 
 export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
+  const [isHeaderCompact, setIsHeaderCompact] = useState(false)
+
+  useEffect(() => {
+    const updateHeader = () => setIsHeaderCompact(window.scrollY > 84)
+
+    updateHeader()
+    window.addEventListener('scroll', updateHeader, { passive: true })
+    return () => window.removeEventListener('scroll', updateHeader)
+  }, [])
+
   return (
     <main className="min-h-svh bg-white text-ink">
-      <div className="mx-auto w-full max-w-[1120px] px-5 py-10 sm:px-8 md:py-14">
-        <section className="relative h-[520px] sm:h-[640px] md:h-auto md:min-h-[690px]">
+      <header className="fixed inset-x-0 top-3 z-50 px-4 sm:top-5">
+        <div
+          className={`mx-auto flex max-w-[1120px] items-center justify-between rounded-full border border-black/10 bg-white/86 shadow-[0_14px_34px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-300 ${
+            isHeaderCompact ? 'min-h-12 px-3 py-2 sm:min-h-14 sm:px-4' : 'min-h-16 px-4 py-3 sm:min-h-[72px] sm:px-5'
+          }`}
+        >
+          <a href="#" className="flex min-w-0 items-center gap-3" aria-label="Voltar ao topo da apresentação">
+            <span
+              className={`flex shrink-0 items-center justify-center rounded-full bg-ink font-black text-white transition-all duration-300 ${
+                isHeaderCompact ? 'h-8 w-8 text-sm' : 'h-10 w-10 text-base sm:h-11 sm:w-11'
+              }`}
+            >
+              H
+            </span>
+            <span className="min-w-0">
+              <span
+                className={`block truncate font-black leading-none transition-all duration-300 ${
+                  isHeaderCompact ? 'text-base' : 'text-lg sm:text-xl'
+                }`}
+              >
+                Habitos
+              </span>
+              <span
+                className={`block truncate text-xs font-bold text-[#050505]/58 transition-all duration-300 ${
+                  isHeaderCompact ? 'max-h-0 opacity-0' : 'mt-1 max-h-4 opacity-100'
+                }`}
+              >
+                Decisões de Design
+              </span>
+            </span>
+          </a>
+
+          <nav className="flex shrink-0 items-center gap-1.5" aria-label="Links rápidos da apresentação">
+            <a
+              href="#links-projeto"
+              className={`rounded-full border border-black/10 font-black transition hover:border-orange/70 hover:text-orange ${
+                isHeaderCompact ? 'px-3 py-2 text-xs' : 'px-4 py-2.5 text-sm'
+              }`}
+            >
+              Links
+            </a>
+            <a
+              href={siteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={`flex items-center justify-center rounded-full bg-sunshine text-ink transition active:scale-95 ${
+                isHeaderCompact ? 'h-9 w-9' : 'h-10 w-10'
+              }`}
+              aria-label="Abrir site de Jonatas Ricardo"
+              title="Site"
+            >
+              <Globe2 className="h-4 w-4" strokeWidth={2.4} />
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <div className="mx-auto w-full max-w-[1120px] px-5 pb-10 pt-[104px] sm:px-8 sm:pt-[124px] md:pb-14">
+        <section className="relative h-[550px] sm:h-[660px] md:h-auto md:min-h-[690px]">
           <img
             src="/presentation/hero-desk.png"
             alt="Protótipo de hábitos aberto em um iPhone sobre uma mesa de trabalho"
@@ -78,6 +161,21 @@ export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
               <br />
               Santos
             </p>
+            <div className="mt-4 flex flex-col items-start gap-2 sm:mt-5">
+              {authorLinks.map((link) => (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/82 py-1.5 pl-1.5 pr-3 text-sm font-black shadow-[0_8px_20px_rgba(0,0,0,0.08)] backdrop-blur-md transition hover:border-orange/70 hover:text-orange"
+                >
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-orange text-ink">{link.icon}</span>
+                  {link.title}
+                  <ExternalLink className="h-3.5 w-3.5 text-[#050505]/45" strokeWidth={2.4} />
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -281,7 +379,7 @@ export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
           </div>
         </section>
 
-        <section className="border-t border-black/10 py-14">
+        <section id="links-projeto" className="border-t border-black/10 py-14">
           <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.18em] text-orange">Entrega</p>

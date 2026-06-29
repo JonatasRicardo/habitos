@@ -1,9 +1,8 @@
 import type { MouseEvent } from 'react'
-import { ArrowRight, BookOpen, ExternalLink, FileText, GitBranch, MonitorSmartphone, PenTool } from 'lucide-react'
+import { BookOpen, ExternalLink, FileText, GitBranch, MonitorSmartphone, PenTool } from 'lucide-react'
 
 type HomeScreenProps = {
   onOpenPrototype: () => void
-  onOpenManage: () => void
 }
 
 const figmaDesignUrl =
@@ -12,7 +11,7 @@ const figmaDesignUrl =
 const figmaPrototypeUrl =
   'https://www.figma.com/proto/NdUd55SST624cVUhRn97zj/Habitos?node-id=19-18&viewport=332%2C-1483%2C0.92&t=l3iLOUYGso6bd7Pe-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=19%3A18&page-id=0%3A1'
 
-const storybookUrl = 'https://storybook-habitos.vercel.app'
+const storybookUrl = 'https://habitos-doc.vercel.app/'
 const githubUrl = 'https://github.com/JonatasRicardo/habitos'
 
 const projectLinks = [
@@ -53,28 +52,28 @@ function handleLocalNavigation(event: MouseEvent<HTMLAnchorElement>, onNavigate:
   onNavigate()
 }
 
-export function HomeScreen({ onOpenPrototype, onOpenManage }: HomeScreenProps) {
+export function HomeScreen({ onOpenPrototype }: HomeScreenProps) {
   return (
     <main className="min-h-svh bg-white text-ink">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-10 sm:px-8 md:py-14">
-        <section className="relative min-h-[720px] md:min-h-[690px]">
+        <section className="relative h-[520px] sm:h-[640px] md:h-auto md:min-h-[690px]">
           <img
             src="/presentation/hero-desk.png"
             alt="Protótipo de hábitos aberto em um iPhone sobre uma mesa de trabalho"
-            className="absolute right-0 top-0 h-auto w-[64%] max-w-[720px] rounded-[18px] object-cover"
+            className="absolute right-0 top-0 h-[300px] w-[72%] rounded-[14px] object-cover sm:h-[430px] sm:w-[66%] md:h-auto md:w-[64%] md:max-w-[720px] md:rounded-[18px]"
           />
 
-          <h1 className="relative z-10 inline-block rounded-[18px] bg-ink px-6 py-5 text-[34px] font-black leading-none tracking-normal text-white shadow-[0_12px_28px_rgba(0,0,0,0.18)] sm:text-[52px] md:ml-1 md:mt-8 md:text-[66px]">
+          <h1 className="relative z-10 inline-block max-w-full rounded-[10px] bg-ink px-4 py-3 text-[28px] font-black leading-none tracking-normal text-white shadow-[0_12px_28px_rgba(0,0,0,0.18)] min-[380px]:text-[30px] sm:rounded-[14px] sm:px-5 sm:py-4 sm:text-[44px] md:ml-1 md:mt-8 md:rounded-[18px] md:px-6 md:py-5 md:text-[66px]">
             Decisões de Design
           </h1>
 
-          <div className="relative z-10 mt-12 w-[230px] md:mt-16">
+          <div className="absolute left-0 top-[178px] z-10 w-[180px] sm:top-[260px] sm:w-[230px] md:relative md:top-auto md:mt-16">
             <img
               src="/presentation/avatar.png"
               alt="Foto de Jonatas Ricardo Santos"
-              className="h-[190px] w-[190px] rounded-full bg-orange object-cover md:h-[230px] md:w-[230px]"
+              className="h-[170px] w-[170px] rounded-full bg-orange object-cover sm:h-[220px] sm:w-[220px] md:h-[230px] md:w-[230px]"
             />
-            <p className="mt-8 text-[34px] font-black leading-[0.98] md:text-[42px]">
+            <p className="mt-6 text-[30px] font-black leading-[0.98] sm:text-[38px] md:mt-8 md:text-[42px]">
               Jonatas Ricardo
               <br />
               Santos
@@ -86,16 +85,16 @@ export function HomeScreen({ onOpenPrototype, onOpenManage }: HomeScreenProps) {
           <h2 className="text-[34px] font-black leading-none sm:text-[44px]">Telas escolhidas</h2>
 
           <div className="mt-7 grid gap-8 lg:grid-cols-[1fr_0.96fr] lg:items-center">
-            <div className="relative min-h-[500px] sm:min-h-[610px] lg:min-h-[650px]">
+            <div className="relative min-h-[380px] sm:min-h-[560px] lg:min-h-[650px]">
               <img
                 src="/presentation/manage-old.png"
                 alt="Tela de gerenciamento de hábitos no Figma"
-                className="absolute left-0 top-[92px] w-[43%] rounded-[24px] shadow-[0_18px_34px_rgba(0,0,0,0.24)]"
+                className="absolute left-0 top-[58px] w-[44%] rounded-[18px] shadow-[0_18px_34px_rgba(0,0,0,0.24)] sm:top-[92px] sm:rounded-[24px]"
               />
               <img
                 src="/presentation/dashboard-old.png"
                 alt="Tela principal de hábitos no Figma"
-                className="absolute left-[24%] top-0 w-[54%] rounded-[24px] shadow-[0_22px_42px_rgba(0,0,0,0.28)]"
+                className="absolute left-[24%] top-0 w-[58%] rounded-[18px] shadow-[0_22px_42px_rgba(0,0,0,0.28)] sm:w-[54%] sm:rounded-[24px]"
               />
             </div>
 
@@ -318,25 +317,6 @@ export function HomeScreen({ onOpenPrototype, onOpenManage }: HomeScreenProps) {
                 )
               })}
             </div>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={onOpenPrototype}
-              className="inline-flex items-center gap-2 rounded-full bg-sunshine px-5 py-3 text-sm font-black text-ink transition active:scale-[0.98]"
-            >
-              Abrir protótipo React
-              <ArrowRight className="h-4 w-4" strokeWidth={2.4} />
-            </button>
-            <button
-              type="button"
-              onClick={onOpenManage}
-              className="inline-flex items-center gap-2 rounded-full border border-black/20 px-5 py-3 text-sm font-black text-ink transition hover:border-orange/70 active:scale-[0.98]"
-            >
-              Abrir gestão de hábitos
-              <ArrowRight className="h-4 w-4" strokeWidth={2.4} />
-            </button>
           </div>
         </section>
       </div>

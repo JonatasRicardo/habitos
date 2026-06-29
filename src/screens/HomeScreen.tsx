@@ -137,7 +137,7 @@ export function HomeScreen() {
       </header>
 
       <div className="mx-auto w-full max-w-[1120px] px-5 pb-10 pt-[104px] sm:px-8 sm:pt-[124px] md:pb-14">
-        <section className="relative h-[550px] sm:h-[660px] md:h-auto md:min-h-[690px]">
+        <section className="relative h-[492px] sm:h-[620px] md:h-auto md:min-h-[690px]">
           <img
             src="/presentation/hero-desk.png"
             alt="Protótipo de hábitos aberto em um iPhone sobre uma mesa de trabalho"
@@ -148,7 +148,7 @@ export function HomeScreen() {
             Decisões de Design
           </h1>
 
-          <div className="absolute left-0 top-[178px] z-10 w-[180px] sm:top-[260px] sm:w-[230px] md:relative md:top-auto md:mt-16">
+          <div className="absolute left-0 top-[168px] z-10 w-[260px] sm:top-[252px] sm:w-[360px] md:relative md:top-auto md:mt-16 md:w-[230px]">
             <img
               src="/presentation/avatar.png"
               alt="Foto de Jonatas Ricardo Santos"
@@ -159,14 +159,14 @@ export function HomeScreen() {
               <br />
               Santos
             </p>
-            <div className="mt-4 flex flex-col items-start gap-2 sm:mt-5">
+            <div className="mt-4 flex flex-row flex-wrap items-center gap-2 sm:mt-5">
               {authorLinks.map((link) => (
                 <a
                   key={link.title}
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/82 py-1.5 pl-1.5 pr-3 text-sm font-black shadow-[0_8px_20px_rgba(0,0,0,0.08)] backdrop-blur-md transition hover:border-orange/70 hover:text-orange"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/82 py-1.5 pl-1.5 pr-2.5 text-sm font-black shadow-[0_8px_20px_rgba(0,0,0,0.08)] backdrop-blur-md transition hover:border-orange/70 hover:text-orange"
                 >
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-orange text-ink">{link.icon}</span>
                   {link.title}

@@ -1,32 +1,84 @@
-# React + TypeScript + Vite
+# Habitos
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Protótipo React de um app de acompanhamento de hábitos diários. A interface foi desenhada no Figma e implementada de forma responsiva com React, TypeScript, Tailwind CSS e Motion, usando `localStorage` para persistência local e Storybook para documentação dos componentes.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Home** — página de apresentação do projeto com links para o design no Figma, protótipo navegável, código no GitHub e Storybook.
+- **Protótipo React (Dashboard)** — visão de estatísticas dos hábitos por dia, semana e mês, com barras de progresso e destaque do melhor hábito do período.
+- **Gerenciar hábitos** — lista de hábitos com reordenação por arrastar e soltar (drag and drop) via `@dnd-kit`.
 
-## React Compiler
+Os hábitos suportam três tipos: `boolean` (sim/não), `counter` (contador com meta) e `duration` (tempo com meta). Os dados iniciais são semeados automaticamente no `localStorage` na primeira execução.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the Oxlint configuration
+- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/) como bundler/dev server
+- [Tailwind CSS](https://tailwindcss.com/) para estilização
+- [Motion](https://motion.dev/) para animações
+- [@dnd-kit](https://dndkit.com/) para drag and drop
+- [lucide-react](https://lucide.dev/) para ícones
+- [Storybook](https://storybook.js.org/) para documentação de componentes
+- [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) para testes
+- [Oxlint](https://oxc.rs/) para lint
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Como rodar
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+Pré-requisito: Node.js (versão LTS recomendada).
+
+```bash
+# instalar dependências
+npm install
+
+# ambiente de desenvolvimento
+npm run dev
+
+# build de produção
+npm run build
+
+# pré-visualizar o build
+npm run preview
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Scripts
+
+| Script | Descrição |
+| --- | --- |
+| `npm run dev` | Inicia o servidor de desenvolvimento Vite. |
+| `npm run build` | Faz o type-check (`tsc -b`) e gera o build de produção. |
+| `npm run preview` | Serve localmente o build de produção. |
+| `npm run test` | Executa a suíte de testes com Vitest. |
+| `npm run lint` | Roda o Oxlint no código-fonte. |
+| `npm run storybook` | Inicia o Storybook em `localhost:6006`. |
+| `npm run build-storybook` | Gera o build estático do Storybook. |
+
+## Estrutura do projeto
+
+```
+src/
+├── App.tsx                 # roteamento por hash entre as telas
+├── main.tsx                # ponto de entrada
+├── types.ts                # tipos de domínio (Habit, HabitCompletion, stats)
+├── components/             # componentes de UI + stories
+├── data/                   # seed de hábitos, persistência (storage) e cálculo de estatísticas
+└── screens/                # Home, Dashboard e Gerenciar hábitos
+```
+
+## Roteamento
+
+A navegação é feita pelo hash da URL:
+
+- `#/` — Home
+- `#/prototipo-react` — Dashboard
+- `#/gerenciar-habitos` — Gerenciar hábitos
+
+## Links
+
+- **Design (Figma):** [arquivo de design](https://www.figma.com/design/NdUd55SST624cVUhRn97zj/Habitos?node-id=19-18)
+- **Protótipo (Figma):** [fluxo navegável](https://www.figma.com/proto/NdUd55SST624cVUhRn97zj/Habitos?node-id=19-18&starting-point-node-id=19%3A18)
+- **Storybook:** [habitos-doc.vercel.app](https://habitos-doc.vercel.app/)
+- **GitHub:** [JonatasRicardo/habitos](https://github.com/JonatasRicardo/habitos)
+
+## Autor
+
+Jonatas Ricardo — [LinkedIn](https://www.linkedin.com/in/jonatasricardo/) · [Site](https://jonatasricardo.com/)
